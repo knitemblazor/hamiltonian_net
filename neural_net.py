@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from config import space_points_gen
+from methods import space_points_gen
 
 
 class Net(nn.Module):
