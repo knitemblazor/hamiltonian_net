@@ -22,7 +22,4 @@ print(list(net.parameters()))
 input = torch.tensor([[8.5]])
 out = net(input)
 
-print(list(net.parameters()))
-input = torch.tensor([[8.5]])
-out = net(input)
 # print(out)
