@@ -1,1 +1,1 @@
-# haltonian_net
+# hamiltonian_net
