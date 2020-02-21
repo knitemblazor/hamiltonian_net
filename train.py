@@ -1,3 +1,4 @@
+# not complete need to write the loss function
 from methods import *
 
 net = Net()
