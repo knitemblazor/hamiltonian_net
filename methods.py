@@ -4,8 +4,8 @@ import torch
 
 
 def num_den(x, beta_, net_out):
-    num = (psi(x, beta_, net_out) * net_out) ** 2
-    den = psi(x, beta_, net_out) * hamiltonian_psi(x, beta_, net_out)
+    num = psi(x, beta_, net_out) * hamiltonian_psi(x, beta_, net_out)
+    den = (psi(x, beta_, net_out) * net_out) ** 2
     return num, den
 
 
