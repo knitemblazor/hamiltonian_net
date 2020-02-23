@@ -1,5 +1,6 @@
 import numpy as np
 from functools import reduce
+from autograd import grad
 
 u = 1
 nx = 400
@@ -29,9 +30,7 @@ def psi(x, beta_, net_out):
 
 
 def hamiltonian_psi(x, beta_, net_out):  #
-    # lap_psi = reduce(np.add, np.gradient(psi(x, beta, net_out)))
-    # lap_psi = np.gradient(np.gradient(psi(x, beta_, net_out)))
-    lap_psi = psi(x, beta, net_out)
-    # print(lap_psi)
+    h = 0.00003034
+    lap_psi = (psi(x+h, beta_, net_out) - 2*psi(x, beta_, net_out) + psi(x-h, beta_, net_out))/h**2
     h_psi = (-0.5 * lap_psi / u) + potential(x) * psi(x, beta_, net_out)
     return h_psi

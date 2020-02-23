@@ -1,6 +1,4 @@
-from method_mod import *
-from neural_net import *
-import torch
+from hamiltonian_net.method_mod import *
 
 
 def num_den(x, beta_, net_out):
@@ -26,14 +24,23 @@ def trapezoidal(beta_, net_out):
         return None
     trap_sub(0)
     trap_sub(len(x_space)-1)
-    return sum(numerator)/sum(denominator)
+    return sum(numerator), sum(denominator)
 
 
 def epsilon(beta_, net_out):
-    return trapezoidal(beta_, net_out)
+    num_int, den_int = trapezoidal(beta_, net_out)
+    return sum(num_int)/sum(den_int)
 
 
-def error_function():
-    return None
+def error_function(beta_, net_out):
+    loss_sum = 0.
+    _, den_int = trapezoidal(beta_, net_out)
+    x_space = space_points_gen()
+    for x in x_space:
+        print(epsilon(beta_, net_out))
+        err_eq = hamiltonian_psi(x, beta_, net_out) - epsilon(beta_, net_out) * psi(x, beta_, net_out)
+        loss_sum += err_eq * err_eq
+    return loss_sum / (nx * den_int)
+
 
 
