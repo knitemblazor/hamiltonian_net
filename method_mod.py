@@ -1,16 +1,15 @@
 import numpy as np
-from functools import reduce
-from autograd import grad
+import torch
 
 u = 1
-nx = 400
+nx = 200
 lmb = 0.08
 beta = 0.001
 
 
 def space_points_gen():
     dr = 1. / nx
-    x_space = np.linspace(dr, 16., nx)
+    x_space = np.linspace(dr, 1., nx)
     return x_space
 
 
@@ -25,12 +24,12 @@ def divider():
     return dr, xlow, xhigh
 
 
-def psi(x, beta_, net_out):
-    return np.exp(-beta_ * x ** 2) * net_out
+def psi(x, beta_, net):
+    return np.exp(-beta_ * x ** 2) * net(torch.as_tensor([[x]]))
 
 
-def hamiltonian_psi(x, beta_, net_out):  #
-    h = 0.00003034
-    lap_psi = (psi(x+h, beta_, net_out) - 2*psi(x, beta_, net_out) + psi(x-h, beta_, net_out))/h**2
-    h_psi = (-0.5 * lap_psi / u) + potential(x) * psi(x, beta_, net_out)
+def hamiltonian_psi(x, beta_, net):  #
+    h = 0.002
+    lap_psi = (psi(x+h, beta_, net) - 2*psi(x, beta_, net) + psi(x-h, beta_, net))/h**2
+    h_psi = (-0.5 * lap_psi / u) + potential(x) * psi(x, beta_, net)
     return h_psi
