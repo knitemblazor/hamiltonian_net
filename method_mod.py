@@ -29,7 +29,7 @@ def psi(x, beta_, net):
 
 
 def hamiltonian_psi(x, beta_, net):  #
-    h = 0.002
+    h = 0.0001
     lap_psi = (psi(x+h, beta_, net) - 2*psi(x, beta_, net) + psi(x-h, beta_, net))/h**2
     h_psi = (-0.5 * lap_psi / u) + potential(x) * psi(x, beta_, net)
     return h_psi
