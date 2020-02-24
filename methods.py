@@ -31,15 +31,15 @@ def trapezoidal(beta_, net):
 
 def epsilon(beta_, net):
     num_int, den_int = trapezoidal(beta_, net)
-    return sum(num_int)/sum(den_int)
+    return num_int/den_int
 
 
 def error_function(beta_, net):
     loss_sum = 0.
     _, den_int = trapezoidal(beta_, net)
     x_space = space_points_gen()
-    print("epsilon", epsilon(beta_, net))
+    print("epsilon:", epsilon(beta_, net).detach().numpy()[0])
     for x in x_space:
         err_eq = hamiltonian_psi(x, beta_, net) - epsilon(beta_, net) * psi(x, beta_, net)
         loss_sum += err_eq * err_eq
-    return loss_sum / (nx * den_int)
+    return loss_sum / den_int
