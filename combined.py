@@ -1,12 +1,6 @@
 import numpy as np
 import torch
 
-u = 1
-nx = 800
-dr = 0.01
-beta = 0.08
-h = 0.01
-
 
 class HamiltonianNet:
 
