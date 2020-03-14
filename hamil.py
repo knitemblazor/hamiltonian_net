@@ -51,7 +51,7 @@ class HamiltonianNet:
 
         trap_sub(0)
         trap_sub(len(self.x_space) - 1)
-        return sum(numerator), sum(denominator)
+        return sum(num_integral), sum(den_integral)
 
     def epsilon(self, net):
         num_int, den_int = self.trapezoidal(net)
