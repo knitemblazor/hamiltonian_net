@@ -26,7 +26,7 @@ def trapezoidal(beta_, net):
         return None
     trap_sub(0)
     trap_sub(len(x_space)-1)
-    return sum(numerator), sum(denominator)
+    return sum(num_integral), sum(den_integral)
 
 
 def epsilon(beta_, net):
